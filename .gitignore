@@ -1,2 +1,6 @@
 recipes-database/recipes.db
-recipes-database/venv
+**/venv
+**/.venv*/
+__pycache__
+.vs/
+.vscode-test
