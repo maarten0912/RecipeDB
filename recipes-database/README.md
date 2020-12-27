@@ -3,7 +3,7 @@
   - (Optional:) Create a virtual environment if you don't want to install pip modules on your machine directly.
     - `$ python -m venv venv` to make a virtual environment.
     -  `$ source venv/bin/activate` to use the virtual environment. On windows you can probably use `venv/bin/Activate.ps1` or someting but I don't know how to do that.
-  - Install necessary pip modules: `$ pip install pyquery tqdm`
+  - Install necessary pip modules: `$ pip install pyquery tqdm`. You could also use the requirements.txt in the main directory: `$ pip install -r requirements.txt`
   - Run `$ python init.py` to initialize the database
   - Run `$ python script.py <recipefolder>` to populate this database with the data
   - Run `$ python init2.py` to initialize the full text search database (this needs to be done after populating the database)
