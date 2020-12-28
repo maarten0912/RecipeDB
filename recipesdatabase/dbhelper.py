@@ -27,3 +27,19 @@ def get_recipe(id):
     conn.close()
 
     return rows[0][1] if len(rows) >= 1 else None
+
+def best_matches(ingredient_list):
+    search_query = " OR ".join(ingredient_list).replace("-","").replace("^","").replace(":","").replace("(","").replace(")","")
+
+    conn = sqlite3.connect('./recipes.db')
+    c = conn.cursor()
+
+    c.execute('''SELECT *
+                FROM ingredients
+                WHERE ingredients MATCH ?
+                ORDER BY rank''',[search_query])
+
+    rows = c.fetchall()
+    conn.close()
+
+    return rows

@@ -7,13 +7,13 @@
     </head>
     <body>
         {% if done: %}
-        <p>You finished all the swipes!</p>
+        <h1>You finished all the swipes!</h1>
+        {% include 'recipelist.html' %}
         {% else: %}
-        <p>Recipe: {{ next_recipe }}</p>
-        <p>ID: {{ next_id }}</p>
-        <br>
-        <p>IDs done: {{ previous_ids }}</p>
-        <p>Swipes done: {{ previous_swipes }}</p>
+        <h1>Do you like this recipe?</h1>
+        {% include 'recipe.html' %}
+
+        <p>Progress: {{ previous_ids.split(",")|length }}/5</p>
 
         <form action="/swipe" method="POST">
             <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string }}{% else %}{{ next_id }}{% endif %}">
