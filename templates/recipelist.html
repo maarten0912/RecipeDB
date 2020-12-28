@@ -1,0 +1,31 @@
+<hr>
+{% for i in range(best_matches|length) %}
+    
+    {% if best_matches[i]['image'] != None %}
+        <img src="{{ best_matches[i]['image']}}">
+    {% endif %}
+
+    <h2>{{ best_matches[i]['title'] }}</h2>
+
+    <h3>Ingredients</h3>
+    <ul>
+    {% for ingredient in best_matches[i]['ingredients'] %}
+        <li>{{ ingredient }}</li>
+    {% endfor %}
+    </ul>
+
+    <h3>Method</h3>
+    <ul>
+        {% for methodentry in best_matches[i]['method'] %}
+            <li>{{ methodentry }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Time</h3>
+    <h4>Prepare: {{ best_matches[i]['time']['prep']}}</h4>
+    <h4>Cook: {{ best_matches[i]['time']['cook']}}</h4>
+
+    <h3>Serves {{ best_matches[i]['serves'] }}</h3>
+    <hr>
+
+{% endfor %}

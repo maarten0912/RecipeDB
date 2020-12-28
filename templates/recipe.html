@@ -1,0 +1,29 @@
+<hr>
+
+{% if next_recipe['image'] != None %}
+    <img src="{{ next_recipe['image']}}">
+{% endif %}
+
+<h2>{{ next_recipe['title'] }}</h2>
+
+<h3>Ingredients</h3>
+<ul>
+{% for ingredient in next_recipe['ingredients'] %}
+    <li>{{ ingredient }}</li>
+{% endfor %}
+</ul>
+
+<h3>Method</h3>
+<ul>
+    {% for methodentry in next_recipe['method'] %}
+        <li>{{ methodentry }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Time</h3>
+<h4>Prepare: {{ next_recipe['time']['prep']}}</h4>
+<h4>Cook: {{ next_recipe['time']['cook']}}</h4>
+
+<h3>Serves {{ next_recipe['serves'] }}</h3>
+<hr>
+
