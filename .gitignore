@@ -4,3 +4,4 @@ recipes-database/recipes.db
 __pycache__
 .vs/
 .vscode-test
+.vscode/
