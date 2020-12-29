@@ -1,5 +1,6 @@
 import recipesdatabase.dbhelper as db
 import json
+import algorithm
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
@@ -19,10 +20,17 @@ def swipe_page():
         for i in range(len(id_list)):
             if swipe_list[i] == "yes":
                 ingredient_list.extend(json.loads(db.get_recipe(id_list[i]))["simple_ingredients"])
+        #
+        # ingredient_list, values = algorithm.calculateingredientscores(id_list, swipe_list, 5)
+        # algorithm.getbestrecipes(id_list, swipe_list)
+        #
         matches = db.best_matches(ingredient_list=ingredient_list)
         recipes = []
         for match in matches:
             recipes.append(json.loads(db.get_recipe(match[0])))
+        # Dit gedeelte zorgt ervoor dat de scores worden gebruikt om de beste recepten weer te geven
+        recipes = algorithm.getbestrecipes(id_list, swipe_list)
+        #
         return render_template('swipe.html', done=True, best_matches=recipes)
 
     next_id = db.get_random_id(done_ids=id_list)
