@@ -37,7 +37,8 @@ def best_matches(ingredient_list):
     c.execute('''SELECT *
                 FROM ingredients
                 WHERE ingredients MATCH ?
-                ORDER BY rank''',[search_query])
+                ORDER BY rank
+                LIMIT 100''',[search_query])
 
     rows = c.fetchall()
     conn.close()
