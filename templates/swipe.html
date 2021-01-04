@@ -6,7 +6,8 @@
         <link rel="stylesheet" href="static/index.css">
     </head>
     <body>
-        {% if done: %}
+         <div>
+             {% if done: %}
         <h1>You finished all the swipes!</h1>
         {% include 'recipelist.html' %}
         {% else: %}
@@ -18,13 +19,31 @@
         <form action="/swipe" method="POST">
             <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string }}{% else %}{{ next_id }}{% endif %}">
             <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",no" }}{% else %}{{ "no" }}{% endif %}">
-            <button type="submit">No</button>
+            <button type="submit" id="nobutton">No</button>
         </form>
         <form action="/swipe" method="POST">
             <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string}}{% else %}{{ next_id }}{% endif %}">
             <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",yes" }}{% else %}{{ "yes" }}{% endif %}">
-            <button type="submit">Yes</button>
+            <button type="submit" id="yesbutton">Yes</button>
         </form>
         {% endif %}
+         </div>
     </body>
+    <script>
+        let xdown = 0
+        document.addEventListener("mousedown", mDown)
+        function mDown(e){
+            xdown = e.clientX;
+        }
+
+        document.addEventListener("mouseup", mUp)
+        function mUp(e){
+            if(xdown - e.clientX > 200){
+                document.getElementById("nobutton").click()
+            }
+            if(xdown - e.clientX < -200) {
+                document.getElementById("yesbutton").click()
+            }
+        }
+    </script>
     </html>
