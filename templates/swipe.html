@@ -13,8 +13,6 @@
         <h1>Do you like this recipe?</h1>
         {% include 'recipe.html' %}
 
-        <p>Progress: {{ previous_ids.split(",")|length }}/5</p>
-
         <form action="/swipe" method="POST">
             <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string }}{% else %}{{ next_id }}{% endif %}">
             <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",no" }}{% else %}{{ "no" }}{% endif %}">
