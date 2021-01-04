@@ -72,7 +72,6 @@ def calculateingredientscores(ids, swipes, count):
 
 
 def getbestrecipes(ids, swipes):
-    print(ids)
     bestingredients, values = calculateingredientscores(ids, swipes, len(ids))
     matches = db.best_matches(ingredient_list=bestingredients)
 
@@ -81,7 +80,7 @@ def getbestrecipes(ids, swipes):
 
     for match in matches:
         score = 0
-        ingredients = match[1]
+        ingredients = match[1].replace("[","").replace("\"","").split(", ")
         for ingredient in ingredients:
             if ingredient in bestingredients:
                 index = bestingredients.index(ingredient)
