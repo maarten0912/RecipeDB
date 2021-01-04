@@ -6,69 +6,28 @@
         <link rel="stylesheet" href="static/index.css">
     </head>
     <body>
-         <div id="swiper-container">
-            {% if done: %}
-            <h1>You finished all the swipes!</h1>
-            {% include 'recipelist.html' %}
-            {% else: %}
-            <h1>Do you like this recipe?</h1>
-            {% include 'recipe.html' %}
+        {% if done %}
+        <h1>You finished all the swipes!</h1>
+        {% include 'recipelist.html' %}
+        {% else: %}
+        <h1>Do you like this recipe?</h1>
+        {% include 'recipe.html' %}
 
-            <p>Progress: {{ previous_ids.split(",")|length }}/5</p>
+        <p>Progress: {{ previous_ids.split(",")|length }}/5</p>
 
-            <form action="/swipe" method="POST">
-                <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string }}{% else %}{{ next_id }}{% endif %}">
-                <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",no" }}{% else %}{{ "no" }}{% endif %}">
-                <button type="submit" id="nobutton">No</button>
-            </form>
-            <form action="/swipe" method="POST">
-                <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string}}{% else %}{{ next_id }}{% endif %}">
-                <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",yes" }}{% else %}{{ "yes" }}{% endif %}">
-                <button type="submit" id="yesbutton">Yes</button>
-            </form>
-            {% endif %}
-         </div>
+        <form action="/swipe" method="POST">
+            <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string }}{% else %}{{ next_id }}{% endif %}">
+            <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",no" }}{% else %}{{ "no" }}{% endif %}">
+            <button type="submit" id="nobutton">No</button>
+        </form>
+        <form action="/swipe" method="POST">
+            <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string}}{% else %}{{ next_id }}{% endif %}">
+            <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",yes" }}{% else %}{{ "yes" }}{% endif %}">
+            <button type="submit" id="yesbutton">Yes</button>
+        </form>
+        {% endif %}
     </body>
     <script>
-        // Script for swiping with your mouse
-        let xdown = 0
-        document.addEventListener("mousedown", mDown)
-        function mDown(e){
-            xdown = e.clientX;
-        }
-
-        document.addEventListener("mouseup", mUp)
-        function mUp(e){
-            if(xdown - e.clientX > 200){
-                document.getElementById("nobutton").click()
-            }
-            if(xdown - e.clientX < -200) {
-                document.getElementById("yesbutton").click()
-            }
-        }
-
-        {#//Script for swiping with your finger#}
-        {#let startX#}
-        {#document.addEventListener('touchstart', startTouch)#}
-        {#document.addEventListener('touchend', endTouch)#}
-        {#const startTouch = e => {#}
-        {#    const { touches } = e#}
-        {#    if (touches && touches.length === 1){#}
-        {#        const touch = touches[0]#}
-        {#        startX = touch.clientX#}
-        {##}
-        {#    }#}
-        {#}#}
-        {#const endTouch = e => {#}
-        {#    const finishingTouch = e.changedTouches[0].clientX#}
-        {#    if(startX - finishingTouch > 200){#}
-        {#        document.getElementById("nobutton").click()#}
-        {#    }#}
-        {#    if(startX - finishingTouch < -200){#}
-        {#        document.getElementById("yesbutton").click()#}
-        {#    }#}
-        {#}#}
-
         document.addEventListener('touchstart', handleTouchStart, false);
         document.addEventListener('touchend', handleTouchEnd, false);
 
