@@ -1,4 +1,4 @@
-<div id="recipe" style="background-color:#c36868; width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center">
+<div id="recipe" style=" width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center">
 
     {% if next_recipe['image'] != None %}
         	<img src="{{ next_recipe['image']}}" class="img rounded">
@@ -25,7 +25,6 @@
     <h4>Cook: {{ next_recipe['time']['cook']}}</h4>
 
     <h3>Serves {{ next_recipe['serves'] }}</h3>
-    <hr>
     </div>
 </div>
 

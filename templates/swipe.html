@@ -7,13 +7,13 @@
     	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 	
     </head>
-    <body class="bg-secondary d-flex flex-column align-items-center">
+    <body class="bg-primary d-flex flex-column align-items-center">
         {% if done %}
         <h1>You finished all the swipes!</h1>
         {% include 'recipelist.html' %}
         {% else: %}
         <h1>Do you like this recipe?</h1>
-        <div class="d-flex flex-wrap flex-column rounded align-items-center">
+        <div class="bg-secondary d-flex flex-wrap flex-column rounded align-items-center">
         {% include 'recipe.html' %}
         </div>
 		
