@@ -43,7 +43,7 @@
 <hr>
 
 <div id="recipes" class="collapse">
-{% for i in range(best_matches|length) %}
+{% for i in range(1,best_matches|length) %}
 <div id="recipelist" style="width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center bg-light">
     
     {% if best_matches[i]['image'] != None %}
