@@ -11,6 +11,11 @@ def main_page():
     return render_template('index.html')
 
 
+@app.route('/help')
+def help_page():
+    return render_template('explanation.html')
+
+
 @app.route('/swipe', methods=['POST'])
 def swipe_page():
     ids = request.form['ids']
