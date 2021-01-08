@@ -1,4 +1,48 @@
 <a class="btn btn-primary" href="/" role="button">Go back</a>
+
+<div id="firstrecipe" style="width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center bg-light">
+	<img src="{{ best_matches[0]['image']}}" class="img rounded">
+	
+	<div class="d-flex flex-column" style="width: 832px">
+    <h2>{{ best_matches[0]['title'] }}</h2>
+    
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#recipe0" aria-expanded="false" aria-controls="recipe0">
+    Show more
+  	</button>
+  	
+  	<div class="collapse" id="recipe0">
+    <h3>Ingredients</h3>
+    <ul>
+    {% for ingredient in best_matches[0]['ingredients'] %}
+        <li>{{ ingredient }}</li>
+    {% endfor %}
+    </ul>
+
+    <h3>Method</h3>
+    <ul>
+        {% for methodentry in best_matches[0]['method'] %}
+            <li>{{ methodentry }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Time</h3>
+    <h4>Prepare: {{ best_matches[0]['time']['prep']}}</h4>
+    <h4>Cook: {{ best_matches[0]['time']['cook']}}</h4>
+
+    <h3>Serves {{ best_matches[0]['serves'] }}</h3>
+	</div>
+	</div>
+</div>
+
+<hr>
+
+	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#recipes" aria-expanded="false" aria-controls="recipes">
+    Show more recipes
+  	</button>
+
+<hr>
+
+<div id="recipes" class="collapse">
 {% for i in range(best_matches|length) %}
 <div id="recipelist" style="width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center bg-light">
     
@@ -38,3 +82,4 @@
 </div>
 <hr>
 {% endfor %}
+</div>
