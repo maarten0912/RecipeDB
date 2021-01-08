@@ -1,10 +1,9 @@
-<div id="recipe" style="background-color:#c36868">
-    <hr>
+<div id="recipe" style="background-color:#c36868; width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center">
 
     {% if next_recipe['image'] != None %}
-        <img src="{{ next_recipe['image']}}">
+        	<img src="{{ next_recipe['image']}}" class="img rounded">
     {% endif %}
-
+    <div class="d-flex flex-column" style="width: 832px">
     <h2>{{ next_recipe['title'] }}</h2>
 
     <h3>Ingredients</h3>
@@ -27,6 +26,6 @@
 
     <h3>Serves {{ next_recipe['serves'] }}</h3>
     <hr>
-
+    </div>
 </div>
 
