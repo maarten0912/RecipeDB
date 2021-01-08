@@ -1,6 +1,6 @@
-<button href="/" class="btn btn-dark">Go back</button>
-<div id="recipelist" style="width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center bg-light">
+<a class="btn btn-primary" href="/" role="button">Go back</a>
 {% for i in range(best_matches|length) %}
+<div id="recipelist" style="width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center bg-light">
     
     {% if best_matches[i]['image'] != None %}
         <img src="{{ best_matches[i]['image']}}" class="img rounded">
@@ -9,6 +9,11 @@
     <div class="d-flex flex-column" style="width: 832px">
     <h2>{{ best_matches[i]['title'] }}</h2>
 
+	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#recipe{{i}}" aria-expanded="false" aria-controls="recipe{{i}}">
+    Show more
+  	</button>
+
+	<div class="collapse" id="recipe{{i}}">
     <h3>Ingredients</h3>
     <ul>
     {% for ingredient in best_matches[i]['ingredients'] %}
@@ -29,5 +34,7 @@
 
     <h3>Serves {{ best_matches[i]['serves'] }}</h3>
 	</div>
-{% endfor %}
+	</div>
 </div>
+<hr>
+{% endfor %}

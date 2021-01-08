@@ -5,7 +5,7 @@
     {% endif %}
     <div class="d-flex flex-column" style="width: 832px">
     <h2>{{ next_recipe['title'] }}</h2>
-
+    
     <h3>Ingredients</h3>
     <ul>
     {% for ingredient in next_recipe['ingredients'] %}
@@ -23,8 +23,8 @@
     <h3>Time</h3>
     <h4>Prepare: {{ next_recipe['time']['prep']}}</h4>
     <h4>Cook: {{ next_recipe['time']['cook']}}</h4>
-
     <h3>Serves {{ next_recipe['serves'] }}</h3>
+
     </div>
 </div>
 
