@@ -13,20 +13,19 @@
         {% include 'recipelist.html' %}
         {% else: %}
         <h1>Do you like this recipe?</h1>
-        <div class="bg-secondary d-flex flex-wrap flex-column rounded align-items-center">
-        {% include 'recipe.html' %}
-        </div>
-		
-		<div class="d-flex flex-row">
-        <form action="/swipe" method="POST">
+		<div class="d-flex flex-row container-fluid">
+        <form action="/swipe" method="POST" class="container-fluid d-flex justify-content-center align-items-center">
             <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string }}{% else %}{{ next_id }}{% endif %}">
             <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",no" }}{% else %}{{ "no" }}{% endif %}">
-            <button type="submit" id="nobutton">No</button>
+            <button type="submit" id="nobutton" class="btn btn-dark btn-lg h-50 w-50 rounded">No</button>
         </form>
-        <form action="/swipe" method="POST">
+        <div class="bg-light rounded">
+        {% include 'recipe.html' %}
+        </div>
+        <form action="/swipe" method="POST" class="container-fluid d-flex justify-content-center align-items-center">
             <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string}}{% else %}{{ next_id }}{% endif %}">
             <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",yes" }}{% else %}{{ "yes" }}{% endif %}">
-            <button type="submit" id="yesbutton">Yes</button>
+            <button type="submit" id="yesbutton" class="btn btn-dark btn-lg h-50 w-50 rounded">Yes</button>
         </form>
         </div>
         {% endif %}
