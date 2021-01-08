@@ -1,12 +1,12 @@
-<a href="/" class="button">Go back</a>
-<div id="recipelist" style="background-color:#c36868" class="container-fluid rounded">
-<hr>
+<button href="/" class="btn btn-dark">Go back</button>
+<div id="recipelist" style="width: 832px" class="d-flex flex-wrap flex-column rounded align-items-center bg-light">
 {% for i in range(best_matches|length) %}
     
     {% if best_matches[i]['image'] != None %}
-        <img src="{{ best_matches[i]['image']}}">
+        <img src="{{ best_matches[i]['image']}}" class="img rounded">
     {% endif %}
 
+    <div class="d-flex flex-column" style="width: 832px">
     <h2>{{ best_matches[i]['title'] }}</h2>
 
     <h3>Ingredients</h3>
@@ -28,8 +28,6 @@
     <h4>Cook: {{ best_matches[i]['time']['cook']}}</h4>
 
     <h3>Serves {{ best_matches[i]['serves'] }}</h3>
-    <hr>
-
+	</div>
 {% endfor %}
-
 </div>
