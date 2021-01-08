@@ -15,10 +15,18 @@ def main_page():
 def swipe_page():
     ids = request.form['ids']
     swipes = request.form['swipes']
+    print(ids)
+    print(swipes)
     id_list = ids.split(",")
     swipe_list = swipes.split(",")
 
-    if sum(map(lambda x: x == "yes", swipe_list)) >= 5:
+    # Use this if statement if the required amount of yes swipes needs to be above 5
+    # if sum(map(lambda x: x == "yes", swipe_list)) >= 5:
+    #     recipes = algorithm.getbestrecipes(id_list, swipe_list)
+    #     return render_template('swipe.html', done=True, best_matches=recipes)
+
+    # Use this if statement if the required amount of swipes need to be above 20
+    if len(swipe_list) == 20:
         recipes = algorithm.getbestrecipes(id_list, swipe_list)
         return render_template('swipe.html', done=True, best_matches=recipes)
 
