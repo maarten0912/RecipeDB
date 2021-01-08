@@ -3,32 +3,46 @@
     <html>
     <head>
         <title>Foodswiper</title>
+        <link rel="stylesheet" href="../static/index.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-	
     </head>
-    <body class="bg-primary d-flex flex-column align-items-center">
-        {% if done %}
-        <h1>You finished all the swipes!</h1>
-        {% include 'recipelist.html' %}
-        {% else: %}
-        <h1>Do you like this recipe?</h1>
-		<div class="d-flex flex-row container-fluid">
-        <form action="/swipe" method="POST" class="container-fluid d-flex justify-content-center align-items-center">
-            <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string }}{% else %}{{ next_id }}{% endif %}">
-            <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",no" }}{% else %}{{ "no" }}{% endif %}">
-            <button type="submit" id="nobutton" class="btn btn-dark btn-lg h-50 w-50 rounded">No</button>
-        </form>
-        <div class="bg-light rounded">
-        {% include 'recipe.html' %}
+    <body>
+        <div class="bg-primary d-flex flex-column align-items-center">
+            <!--Navbar-->
+            <div class="navbar">
+                <a href="swipe" class="left">back</a>
+                <a href="" class="left">help</a>
+                <a href="index" class="right">home</a>
+                <a href="" class="right">info</a>
+            </div>
+
+            <!-- Main Functionality of the webpage-->
+            <div>
+                {% if done %}
+                <h1>You finished all the swipes!</h1>
+                {% include 'recipelist.html' %}
+                {% else: %}
+                <h1>Do you like this recipe?</h1>
+                <div class="d-flex flex-row container-fluid">
+                <form action="/swipe" method="POST" class="container-fluid d-flex justify-content-center align-items-center">
+                    <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string }}{% else %}{{ next_id }}{% endif %}">
+                    <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",no" }}{% else %}{{ "no" }}{% endif %}">
+                    <button type="submit" id="nobutton" class="btn btn-dark btn-lg h-50 w-50 rounded">No</button>
+                </form>
+                <div class="bg-light rounded">
+                {% include 'recipe.html' %}
+                </div>
+                <form action="/swipe" method="POST" class="container-fluid d-flex justify-content-center align-items-center">
+                    <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string}}{% else %}{{ next_id }}{% endif %}">
+                    <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",yes" }}{% else %}{{ "yes" }}{% endif %}">
+                    <button type="submit" id="yesbutton" class="btn btn-dark btn-lg h-50 w-50 rounded">Yes</button>
+                </form>
+                </div>
+                {% endif %}
+            </div>
         </div>
-        <form action="/swipe" method="POST" class="container-fluid d-flex justify-content-center align-items-center">
-            <input style="display: none" type="text" name="ids" value="{% if previous_ids != "" and previous_ids != None %}{{ previous_ids + "," + next_id|string}}{% else %}{{ next_id }}{% endif %}">
-            <input style="display: none" type="text" name="swipes" value="{% if previous_swipes != "" and previous_swipes != None %}{{ previous_swipes + ",yes" }}{% else %}{{ "yes" }}{% endif %}">
-            <button type="submit" id="yesbutton" class="btn btn-dark btn-lg h-50 w-50 rounded">Yes</button>
-        </form>
-        </div>
-        {% endif %}
+
     </body>
     <script>
         document.addEventListener('touchstart', handleTouchStart, false);
