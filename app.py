@@ -56,10 +56,15 @@ def swipe_page():
         #     recipes = algorithm.getbestrecipes(id_list, swipe_list)
         #     return render_template('swipe.html', done=True, best_matches=recipes)
 
-        # Use this if statement if the required amount of swipes need to be above 20
-        if len(swipe_list) == 20:
+        # Use this if statement if the required amount of swipes need to be above 20 with at least 4 positive swipes
+        if len(swipe_list) == 20 and sum(map(lambda x: x == "yes", swipe_list)) >= 4:
             recipes = algorithm.getbestrecipes(id_list, swipe_list)
             return render_template('swipe.html', done=True, best_matches=recipes)
+
+        # Use this if statement if the required amount of swipes need to be above 10 with at least 2 positive swipes
+        # if len(swipe_list) == 10 and sum(map(lambda x: x == "yes", swipe_list)) >= 2:
+        #     recipes = algorithm.getbestrecipes(id_list, swipe_list)
+        #     return render_template('swipe.html', done=True, best_matches=recipes)
 
         next_id = db.get_random_id(done_ids=id_list)
         next_recipe = json.loads(db.get_recipe(next_id))
